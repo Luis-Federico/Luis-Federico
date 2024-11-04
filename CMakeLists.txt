@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.28)
 project(vortex C)
 
 find_package(PkgConfig REQUIRED)
@@ -11,6 +11,6 @@ add_definitions(${GTK3_CFLAGS_OTHER})
 set(CMAKE_C_STANDARD 11)
 
 
-add_executable(vortex main.c)
+add_executable(vortex esqueletor.c)
 find_library(MATH_LIBRARY m)
 target_link_libraries(vortex ${GTK3_LIBRARIES} ${MATH_LIBRARY})
