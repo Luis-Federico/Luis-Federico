@@ -13,4 +13,4 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(vortex esqueletor.c)
 find_library(MATH_LIBRARY m)
-target_link_libraries(vortex ${GTK3_LIBRARIES} ${MATH_LIBRARY})
+target_link_libraries(vortex ${GTK3_LIBRARIES} -lm)
