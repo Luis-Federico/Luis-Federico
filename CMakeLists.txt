@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.28)
-project(vortex C)
+cmake_minimum_required(VERSION 3.25)
+project(Rubik C)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
@@ -11,6 +11,6 @@ add_definitions(${GTK3_CFLAGS_OTHER})
 set(CMAKE_C_STANDARD 11)
 
 
-add_executable(vortex esqueletor.c)
+add_executable(Rubik main.c)
 find_library(MATH_LIBRARY m)
-target_link_libraries(vortex ${GTK3_LIBRARIES} -lm)
+target_link_libraries(Rubik ${GTK3_LIBRARIES} -lm)
