@@ -11,6 +11,6 @@ add_definitions(${GTK3_CFLAGS_OTHER})
 set(CMAKE_C_STANDARD 11)
 
 
-add_executable(Rubik main1.c)
+add_executable(Rubik main2.c)
 find_library(MATH_LIBRARY m)
 target_link_libraries(Rubik ${GTK3_LIBRARIES} -lm)
