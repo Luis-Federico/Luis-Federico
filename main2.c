@@ -146,22 +146,22 @@ static void drawed() {
 }
 
 void on_button_click(GtkWidget *widget, const gpointer *data) {
-	if ( (char*)data == "1")
+	if ( GPOINTER_TO_INT(data) == 1)
 	{
 		o=1;
 		mov=TRUE;
 	}
-	if ((char*)data == "2")
+	if (GPOINTER_TO_INT(data) == 2)
 	{
 		o=2;
 		mov=TRUE;
 	}
-	if ((char*)data == "3")
+	if (GPOINTER_TO_INT(data) == 3)
 	{
 		o=3;
 		mov=TRUE;
 	}
-	if ((char*)data == "4")
+	if (GPOINTER_TO_INT(data) == 4)
 	{
 
 		switch (v)
@@ -181,14 +181,14 @@ void on_button_click(GtkWidget *widget, const gpointer *data) {
 		v=(int)s;
 
 	}
-	if ((char*)data == "5")
+	if (GPOINTER_TO_INT(data) == 5)
 	{
 		if (mov)
 		mov=FALSE;
 		else
 			mov=TRUE;
 	}
-	if ((char*)data == "6")
+	if (GPOINTER_TO_INT(data) == 6)
 	{
 
 		if (skeleton) {
@@ -201,7 +201,7 @@ void on_button_click(GtkWidget *widget, const gpointer *data) {
 			skeleton=TRUE;
 
 	}
-	if ((char*)data == "7")
+	if (GPOINTER_TO_INT(data) == 7)
 	{
 		if (transparent)
             transparent=FALSE;
@@ -210,7 +210,7 @@ void on_button_click(GtkWidget *widget, const gpointer *data) {
 			skeleton=TRUE;
 		}
 	}
-	if ((char*)data == "8") {
+	if (GPOINTER_TO_INT(data) == 8) {
 		if (dyed){
 		dyed=FALSE;
 		skeleton=TRUE;
@@ -467,48 +467,48 @@ GtkWidget *make_box(const gboolean homogeneous,
 
 
 	GtkWidget *button1 = gtk_button_new_with_label("rotation x");
-	g_signal_connect (G_OBJECT (button1), "clicked", G_CALLBACK (on_button_click), (gpointer) "1");
+	g_signal_connect (G_OBJECT (button1), "clicked", G_CALLBACK (on_button_click), GINT_TO_POINTER(1));
 	gtk_box_pack_start (GTK_BOX (box2), button1, expand, fill, padding);
 	gtk_widget_show (button1);
 
 	GtkWidget *button2 = gtk_button_new_with_label("rotation y");
-	g_signal_connect (G_OBJECT (button2), "clicked", G_CALLBACK(on_button_click), (gpointer) "2");
+	g_signal_connect (G_OBJECT (button2), "clicked", G_CALLBACK(on_button_click), GINT_TO_POINTER(2));
 	gtk_box_pack_start (GTK_BOX (box2), button2, expand, fill, padding);
 	gtk_widget_show (button2);
 
 	GtkWidget *button3 = gtk_button_new_with_label("rotation z");
-	g_signal_connect (G_OBJECT (button3), "clicked", G_CALLBACK(on_button_click), (gpointer) "3");
+	g_signal_connect (G_OBJECT (button3), "clicked", G_CALLBACK(on_button_click), GINT_TO_POINTER(3));
 	gtk_box_pack_start (GTK_BOX (box2), button3, expand, fill, padding);
 	gtk_widget_show (button3);
 
 
 
 		GtkWidget *button4 = gtk_button_new_with_label(expand ? "SPEED" : "VELOCITY");
-		g_signal_connect (G_OBJECT (button4), "clicked", G_CALLBACK(on_button_click), (gpointer) "4");
+		g_signal_connect (G_OBJECT (button4), "clicked", G_CALLBACK(on_button_click), GINT_TO_POINTER(4));
 
 	gtk_box_pack_start (GTK_BOX (box2), button4, expand, fill, padding);
 	gtk_widget_show (button4);
 
 
 	GtkWidget *button5 = gtk_button_new_with_label(fill ? "CONTINUE" : "STOP");
-	g_signal_connect (G_OBJECT (button5), "clicked", G_CALLBACK(on_button_click), (gpointer) "5");
+	g_signal_connect (G_OBJECT (button5), "clicked", G_CALLBACK(on_button_click), GINT_TO_POINTER(5));
 	gtk_box_pack_start (GTK_BOX (box2), button5, expand, fill, padding);
 	gtk_widget_show (button5);
 
 
 
 	GtkWidget *button6 = gtk_button_new_with_label("skeleton");
-	g_signal_connect (G_OBJECT (button6), "clicked", G_CALLBACK(on_button_click), (gpointer) "6");
+	g_signal_connect (G_OBJECT (button6), "clicked", G_CALLBACK(on_button_click), GINT_TO_POINTER(6));
 	gtk_box_pack_start (GTK_BOX (box2), button6, expand, fill, padding);
 	gtk_widget_show (button6);
 
 	GtkWidget *button7 = gtk_button_new_with_label("transparent skeleton");
-	g_signal_connect (G_OBJECT (button7), "clicked", G_CALLBACK(on_button_click), (gpointer) "7");
+	g_signal_connect (G_OBJECT (button7), "clicked", G_CALLBACK(on_button_click), GINT_TO_POINTER(7));
 	gtk_box_pack_start (GTK_BOX (box2), button7, expand, fill, padding);
 	gtk_widget_show (button7);
 
 	GtkWidget *button8 = gtk_button_new_with_label("DYED");
-	g_signal_connect (G_OBJECT (button8), "clicked", G_CALLBACK(on_button_click), (gpointer) "8");
+	g_signal_connect (G_OBJECT (button8), "clicked", G_CALLBACK(on_button_click), GINT_TO_POINTER(8));
 	gtk_box_pack_start (GTK_BOX (box2), button8, expand, fill, padding);
 	gtk_widget_show (button8);
 	return box2;
