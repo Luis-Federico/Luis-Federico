@@ -347,7 +347,7 @@ if (mov==TRUE) {
 static gboolean draw(GtkWidget* widget,cairo_t* context)
 {
 
-	char buffer1[17] = "Acceleration : ";
+	char buffer1[18] = "Acceleration : ";
 	const int acceleration=(int)s;
 	char speed [3];
 	if (acceleration==-1){speed[0]='-';speed[1]='1';speed[2]='\0';}
