@@ -145,23 +145,23 @@ static void drawed() {
 
 }
 
-void on_button_click(GtkWidget *widget, const gpointer *data) {
-	if ( (char*)data == "1")
+void on_button_click(GtkWidget *widget, int data) {
+	if ( data == 1)
 	{
 		o=1;
 		mov=TRUE;
 	}
-	if ((char*)data == "2")
+	if (data == 2)
 	{
 		o=2;
 		mov=TRUE;
 	}
-	if ((char*)data == "3")
+	if (data == 3)
 	{
 		o=3;
 		mov=TRUE;
 	}
-	if ((char*)data == "4")
+	if (data == 4)
 	{
 
 		switch (v)
@@ -181,14 +181,14 @@ void on_button_click(GtkWidget *widget, const gpointer *data) {
 		v=(int)s;
 
 	}
-	if ((char*)data == "5")
+	if (data == 5)
 	{
 		if (mov)
 		mov=FALSE;
 		else
 			mov=TRUE;
 	}
-	if ((char*)data == "6")
+	if (data == 6)
 	{
 
 		if (skeleton) {
@@ -201,7 +201,7 @@ void on_button_click(GtkWidget *widget, const gpointer *data) {
 			skeleton=TRUE;
 
 	}
-	if ((char*)data == "7")
+	if (data == 7)
 	{
 		if (transparent)
             transparent=FALSE;
@@ -210,7 +210,7 @@ void on_button_click(GtkWidget *widget, const gpointer *data) {
 			skeleton=TRUE;
 		}
 	}
-	if ((char*)data == "8") {
+	if (data == 8) {
 		if (dyed){
 		dyed=FALSE;
 		skeleton=TRUE;
@@ -467,48 +467,48 @@ GtkWidget *make_box(const gboolean homogeneous,
 
 
 	GtkWidget *button1 = gtk_button_new_with_label("rotation x");
-	g_signal_connect (G_OBJECT (button1), "clicked", G_CALLBACK (on_button_click), (gpointer) "1");
+	g_signal_connect (G_OBJECT (button1), "clicked", G_CALLBACK (on_button_click), 1);
 	gtk_box_pack_start (GTK_BOX (box2), button1, expand, fill, padding);
 	gtk_widget_show (button1);
 
 	GtkWidget *button2 = gtk_button_new_with_label("rotation y");
-	g_signal_connect (G_OBJECT (button2), "clicked", G_CALLBACK(on_button_click), (gpointer) "2");
+	g_signal_connect (G_OBJECT (button2), "clicked", G_CALLBACK(on_button_click), 2);
 	gtk_box_pack_start (GTK_BOX (box2), button2, expand, fill, padding);
 	gtk_widget_show (button2);
 
 	GtkWidget *button3 = gtk_button_new_with_label("rotation z");
-	g_signal_connect (G_OBJECT (button3), "clicked", G_CALLBACK(on_button_click), (gpointer) "3");
+	g_signal_connect (G_OBJECT (button3), "clicked", G_CALLBACK(on_button_click), 3);
 	gtk_box_pack_start (GTK_BOX (box2), button3, expand, fill, padding);
 	gtk_widget_show (button3);
 
 
 
 		GtkWidget *button4 = gtk_button_new_with_label(expand ? "SPEED" : "VELOCITY");
-		g_signal_connect (G_OBJECT (button4), "clicked", G_CALLBACK(on_button_click), (gpointer) "4");
+		g_signal_connect (G_OBJECT (button4), "clicked", G_CALLBACK(on_button_click), 4);
 
 	gtk_box_pack_start (GTK_BOX (box2), button4, expand, fill, padding);
 	gtk_widget_show (button4);
 
 
 	GtkWidget *button5 = gtk_button_new_with_label(fill ? "CONTINUE" : "STOP");
-	g_signal_connect (G_OBJECT (button5), "clicked", G_CALLBACK(on_button_click), (gpointer) "5");
+	g_signal_connect (G_OBJECT (button5), "clicked", G_CALLBACK(on_button_click), 5);
 	gtk_box_pack_start (GTK_BOX (box2), button5, expand, fill, padding);
 	gtk_widget_show (button5);
 
 
 
 	GtkWidget *button6 = gtk_button_new_with_label("skeleton");
-	g_signal_connect (G_OBJECT (button6), "clicked", G_CALLBACK(on_button_click), (gpointer) "6");
+	g_signal_connect (G_OBJECT (button6), "clicked", G_CALLBACK(on_button_click), 6);
 	gtk_box_pack_start (GTK_BOX (box2), button6, expand, fill, padding);
 	gtk_widget_show (button6);
 
 	GtkWidget *button7 = gtk_button_new_with_label("transparent skeleton");
-	g_signal_connect (G_OBJECT (button7), "clicked", G_CALLBACK(on_button_click), (gpointer) "7");
+	g_signal_connect (G_OBJECT (button7), "clicked", G_CALLBACK(on_button_click), 7);
 	gtk_box_pack_start (GTK_BOX (box2), button7, expand, fill, padding);
 	gtk_widget_show (button7);
 
 	GtkWidget *button8 = gtk_button_new_with_label("DYED");
-	g_signal_connect (G_OBJECT (button8), "clicked", G_CALLBACK(on_button_click), (gpointer) "8");
+	g_signal_connect (G_OBJECT (button8), "clicked", G_CALLBACK(on_button_click), 8);
 	gtk_box_pack_start (GTK_BOX (box2), button8, expand, fill, padding);
 	gtk_widget_show (button8);
 	return box2;
@@ -525,14 +525,7 @@ int main(int argc, char** argv) {
     gtk_window_set_title(GTK_WINDOW(window1), "BUTTONS");
     g_signal_connect(G_OBJECT(window1), "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-    //gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-    //gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
-
-
-    //GtkWidget *grid = gtk_grid_new();
-    //gtk_container_add (GTK_CONTAINER (window1), grid);
-
-//botones
+    
 	GtkWidget *box2 = make_box(FALSE, 0, FALSE, FALSE, 0);
 	GtkWidget *label = gtk_label_new("        What you wanna do ?");
 	gtk_box_pack_end (GTK_BOX (box2), label, FALSE, FALSE, 0);
@@ -546,98 +539,36 @@ int main(int argc, char** argv) {
 	gtk_box_pack_start (GTK_BOX (box1), separator, FALSE, TRUE, 5);
 	gtk_widget_show (separator);
 
-	//gtk_widget_show (box2);
+	
 	GtkWidget *quitbox = gtk_box_new(FALSE, 0);
 	GtkWidget *button = gtk_button_new_with_label("Quit");
 	g_signal_connect_swapped (G_OBJECT (button), "clicked",
 								  G_CALLBACK (gtk_main_quit),
 								  G_OBJECT (window1));
 	gtk_box_pack_start (GTK_BOX (quitbox), button, TRUE, FALSE, 0);
-	/* Coloca la hbox (quitbox) en la vbox (box1) */
+	
 	gtk_box_pack_start (GTK_BOX (box1), quitbox, FALSE, FALSE, 0);
 	gtk_container_add (GTK_CONTAINER (window1), box1);
-	//gtk_widget_show (button);
-	//gtk_widget_show (quitbox);
-
-	//gtk_widget_show (box2);
+	
 	gtk_widget_show_all (window1);
-/*
-	gtk_widget_set_name (separator, "separator");
-	gtk_container_add (GTK_CONTAINER (window1), separator);
-	gtk_box_pack_start (GTK_BOX (box2), separator, FALSE, FALSE, 0);
-	gtk_widget_show (separator);
-	GtkWidget *quitbox = gtk_box_new(FALSE, 0);
-	GtkWidget * button = gtk_button_new_with_label ("Quit");
-	g_signal_connect_swapped (G_OBJECT (button), "clicked",
-								  G_CALLBACK (gtk_main_quit),
-								  G_OBJECT (window1));
-	gtk_box_pack_start (GTK_BOX (quitbox), button, TRUE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (box2), quitbox, FALSE, FALSE, 0);
-	gtk_container_add (GTK_CONTAINER (window1), box2);
-	gtk_widget_show (button);
-	gtk_widget_show (quitbox);
 
-	gtk_widget_show (box2);
-	//gtk_widget_set_name (quitbox, "quit");
-	//gtk_widget_show (quitbox);
-	quitbox = gtk_hbox_new (FALSE, 0);
-	//gtk_widget_show (window1);
-*/
-	/*
-   button = gtk_button_new_with_label("rotation x");
-  //g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (on_button_click), (gpointer) "1");
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (on_button_click), (gpointer) "1");
-  gtk_grid_attach (GTK_GRID(window1),button, 200, 10, 1, 1);
-
-  button = gtk_button_new_with_label ("rotation y");
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK(on_button_click), (gpointer) "2");
-  gtk_grid_attach (GTK_GRID(window1),button,200,100,1, 1);
-
-  button = gtk_button_new_with_label ("rotation z");
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK(on_button_click), (gpointer) "3");
-  gtk_grid_attach (GTK_GRID(window1),button,200,200,1,1);
-
-  button = gtk_button_new_with_label ("speed");
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK(on_button_click), (gpointer) "4");
-  gtk_grid_attach (GTK_GRID(window1),button,200,300,1,1);
-
-  button=gtk_button_new_with_label ("exit");
-  gtk_grid_attach (GTK_GRID (window1),button,200,400,1,1);
-  g_signal_connect (G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
-  g_signal_connect_swapped (G_OBJECT(button),"clicked",G_CALLBACK(gtk_main_quit),window);
-	*/
+	
 	GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_container_set_border_width (GTK_CONTAINER (window), 10);
 	gtk_window_set_title(GTK_WINDOW(window), "THE LUIS FEDERICO'S CUBE");
     //GtkWidget *frame = gtk_frame_new(NULL);
     GtkWidget *area = gtk_drawing_area_new();
 
-//ratrojos
 
-
-	//gtk_container_add (GTK_CONTAINER (grid), frame);
-    //gtk_container_add (GTK_CONTAINER (frame), area);
-	//gtk_window_get_size(GTK_WINDOW(window), &width, &height);
-	//gtk_widget_set_size_request(window, width, height);
-    //gtk_widget_set_size_request (frame, GTK_EXPAND|GTK_FILL,GTK_EXPAND|GTK_FILL );
-	//gtk_widget_set_size_request(area,1000,800 );
-    //gtk_grid_attach (GTK_GRID(grid),frame,2,1,GTK_EXPAND|GTK_FILL, GTK_EXPAND|GTK_FILL);
 	gtk_container_add(GTK_CONTAINER(window), area);
 	gtk_window_set_default_size(GTK_WINDOW(window), 500, 400);
 
     g_signal_connect (G_OBJECT (area), "draw", G_CALLBACK (draw), NULL);
 
-    //gtk_container_add(GTK_CONTAINER(window), darea);
-    //gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-    //gtk_window_set_default_size(GTK_WINDOW(window), 600, 400);
-    //gtk_window_set_title(GTK_WINDOW(window), "EL CUBO DE LUIS FEDERICO");
-    //g_signal_connect(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
-    //g_signal_connect(G_OBJECT(darea), "draw", G_CALLBACK(draw), NULL);
-
+   
     g_timeout_add(90, (GSourceFunc)move, window);
 
-    //gtk_widget_show_all(window1);
-
+    
     gtk_widget_show_all(window);
     gtk_main();
 
