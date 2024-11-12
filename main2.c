@@ -145,7 +145,7 @@ static void drawed() {
 
 }
 
-void on_button_click(GtkWidget *widget, int data) {
+void on_button_click(GtkWidget *widget, const gint data) {
 	if ( data == 1)
 	{
 		o=1;
