@@ -808,7 +808,7 @@ drawed();
 	
     builder = gtk_builder_new();
 
-     if( gtk_builder_add_from_file (builder,"rubick1.glade" , &error) == 0)
+     if( gtk_builder_add_from_file (builder,"rubick.glade" , &error) == 0)
     {
          printf("gtk_builder_add_from_file FAILED\n");
          return(0);
