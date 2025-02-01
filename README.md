@@ -10,7 +10,7 @@ You can click the Preview link to take a look at your changes.
 --->
 type: "mkdir build" , "cd build" , "cmake" and "make"... after to clone this repository.
 This will build the program vortex since main.c. For execute type "./vortex". Don't forget to do "cp ../rubick.glade ./" in the directory "build"
-But, if you want to compile main.c you may do "gcc main.c -o vortex $(pkg-config --cflags --libs gtk+-3.0) -lm" Remember you may have installed gcc and libgtk-3-dev (for cairo.h).
+But, if you want to compile main.c you may do "gcc main.c -o vortex $(pkg-config --cflags --libs gtk+-3.0) -lm" Remember you may have installed gcc and libgtk-3-dev (for cairo.h). Probably you need the cmake Minimum required in CMakeLists.txt or change It in this file.  You need too a version of gtk3 required in the glade file ( try gtk3-launch --version) or change the glade file (if not is the right version, apear a message "FAILED TO LOAD THE GTK-BUILDER")
 Run in Linux and MAC .You must to have X11 and xorg-server.
 I was a student of matemathics in 1992-2000.
 Currently I'm a student of phisics.
